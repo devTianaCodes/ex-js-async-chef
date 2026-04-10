@@ -19,6 +19,10 @@ async function getChefBirthday(id) {
 
       const userResponse = await fetch(`https://dummyjson.com/users/${userId}`);
 
+      if (!userResponse.ok) {
+        throw new Error("Errore nel recupero dello chef");
+      }
+
       const user = await userResponse.json();
 
       return user.birthDate;
@@ -27,6 +31,6 @@ async function getChefBirthday(id) {
     }
   }
 
-  getChefBirthday(1)
+  getChefBirthday(45)
     .then((birthday) => console.log("Data di nascita dello chef:", birthday))
     .catch((error) => console.error("Errore:", error.message));
